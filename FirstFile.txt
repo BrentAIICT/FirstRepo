@@ -1,1 +1,2 @@
 The first line of this new files in git
+this is the next line
