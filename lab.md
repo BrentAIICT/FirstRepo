@@ -174,14 +174,13 @@ The main tasks for this exercise are:
 
 1. On **LON-CL1**, open **Windows PowerShell** as an administrator.
 1. Display a directory listing of all the items on drive **E**. Include subfolders in the list.<details><summary>Click to see the answer</summary><Strong> Get-ChildItem -Path E: -Recurse </Strong></details>
-1. Display a list of all the files on drive **E**, without displaying directory names.<details><summary>Click to see the answer</summary><Strong> Get-ChildItem -Path E: -Recurse | ForEach-Object {$_.GetFiles}  </Strong></details>
+1. Display a list of all the files on drive **E**, without displaying directory names.<details><summary>Click to see the answer</summary><Strong> Get-ChildItem -Path E: -Recurse | ForEach-Object {$_.GetFiles()}  </Strong></details>
 
 ### Task 2: Use enumeration to produce 100 random numbers
 
 1. Using a keyword such as **random**, find a command that produces random numbers.<details><summary>Click to see the answer</summary><Strong> Get-Command \*random\*  </Strong></details>
 1. Review the help for the command.<details><summary>Click to see the answer</summary><Strong> Get-Help Get-Random -ShowWindow  </Strong></details>
-1. Run **1..100** to put 100 numeric objects into the pipeline.<details><summary>Click to see the answer</summary><Strong> 1..100 | 
-2. ForEach-Object { Get-Random } </Strong></details>
+1. Run **1..100** to put 100 numeric objects into the pipeline.<details><summary>Click to see the answer</summary><Strong> 1..100 | ForEach-Object { Get-Random } </Strong></details>
 3. Run the command again. For each numeric object, produce a random number that uses the numeric object as the seed.<details><summary>Click to see the answer</summary><Strong> 1..100 | ForEach-Object { Get-Random -SetSeed $PSItem } </Strong></details>
 
 ### Exercise 3 results
