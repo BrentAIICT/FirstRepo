@@ -136,7 +136,7 @@ The main tasks for this exercise are:
 
 1. Display a directory listing of all the items on the **CERT** drive. Include subfolders in the list.<details><summary>Click to see the answer</summary><Strong> Get-ChildItem -Path CERT: -Recurse </Strong></details>
 1. Display the list again and display the name and issuer for only the certificates that don't have a private key. Display the results in one column.<details><summary>Click to see the answer</summary><Strong> Get-ChildItem -Path CERT: -Recurse | Get-Member </Strong></details>
-3. Display the list again and display only the current certificates. Those certificates have a **NotBefore** date that's before today and a **NotAfter** date that's after today.<details><summary>Click to see the answer</summary><Strong> REPLACE </Strong></details> Include the **NotBefore** and **NotAfter** properties in the results and display the results in a format that allows you to easily compare dates. Also, make sure that no data is truncated.<details><summary>Click to see the answer</summary><Strong> Get-ChildItem -Path CERT: -Recurse | Where-Object { $PSItem.HasPrivateKey -eq $False } | Select-Object -Property FriendlyName,Issuer | Format-List </Strong></details>
+3. Display the list again and display only the current certificates. Those certificates have a **NotBefore** date that's before today and a **NotAfter** date that's after today. Include the **NotBefore** and **NotAfter** properties in the results and display the results in a format that allows you to easily compare dates. Also, make sure that no data is truncated.<details><summary>Click to see the answer</summary><Strong> Get-ChildItem -Path CERT: -Recurse | Where-Object { $PSItem.HasPrivateKey -eq $False } | Select-Object -Property FriendlyName,Issuer | Format-Table </Strong></details>
 
 ### Task 4: Create a report that displays the disk volumes that are running low on space
 
@@ -179,7 +179,7 @@ The main tasks for this exercise are:
 ### Task 2: Use enumeration to produce 100 random numbers
 
 1. Using a keyword such as **random**, find a command that produces random numbers.<details><summary>Click to see the answer</summary><Strong> Get-Command \*random\*  </Strong></details>
-1. Review the help for the command.<details><summary>Click to see the answer</summary><Strong> help Get-Random -ShowWindow  </Strong></details>
+1. Review the help for the command.<details><summary>Click to see the answer</summary><Strong> Get-Help Get-Random -ShowWindow  </Strong></details>
 1. Run **1..100** to put 100 numeric objects into the pipeline.<details><summary>Click to see the answer</summary><Strong> 1..100 | 
 2. ForEach-Object { Get-Random } </Strong></details>
 3. Run the command again. For each numeric object, produce a random number that uses the numeric object as the seed.<details><summary>Click to see the answer</summary><Strong> 1..100 | ForEach-Object { Get-Random -SetSeed $PSItem } </Strong></details>
