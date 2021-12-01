@@ -59,7 +59,7 @@ The main tasks for this exercise are:
 1. On **LON-CL1**, start Windows PowerShell with administrative credentials.
 2. Using a keyword such as **date**, find a command that can display the current date. 
 
-<detail><summary>Click to see the answer</summary> Get-Command *date* </detail>
+<details><summary>Click to see the answer</summary> Get-Command *date* </details>
 
 4. Display the members of the object produced by the command that you found in the previous step.
 5. Display only the day of the year.
