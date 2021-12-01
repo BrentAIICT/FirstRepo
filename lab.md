@@ -64,27 +64,26 @@ The main tasks for this exercise are:
 
 ### Task 2: Display information about installed hotfixes
 
-1. Using a keyword such as **hotfix**, find a command that can display a list of the installed hotfixes.
-1. Display the members of the object produced by the command that you found in the previous step.
-1. Display a list of the installed hotfixes. Display only the installation date, hotfix ID number, and name of the user who installed the hotfix.
-1. Display a list of the installed hotfixes. Display only the hotfix ID, the number of days since the hotfix was installed, and the name of the user who installed the hotfix.
+1. Using a keyword such as **hotfix**, find a command that can display a list of the installed hotfixes.<details><summary>Click to see the answer</summary><Strong> Get-Command \*hotfix\*  </Strong></details>
+1. Display the members of the object produced by the command that you found in the previous step.<details><summary>Click to see the answer</summary><Strong> Get-Hotfix | Get-Member  </Strong></details>
+1. Display a list of the installed hotfixes. Display only the installation date, hotfix ID number, and name of the user who installed the hotfix.<details><summary>Click to see the answer</summary><Strong> Get-Hotfix | Select-Object -Property HotFixID,InstalledOn,InstalledBy </Strong></details>
+1. Display a list of the installed hotfixes. Display only the hotfix ID, the number of days since the hotfix was installed, and the name of the user who installed the hotfix.<details><summary>Click to see the answer</summary><Strong> Get-Hotfix | Select-Object -Property HotFixID,@{n='HotFixAge';e={(New-TimeSpan -Start $PSItem.InstalledOn).Days}},InstalledBy </Strong></details>
 
 ### Task 3: Display a list of available scopes from the DHCP server
 
-1. Using a keyword such as **DHCP** or **scope**, find a command that can display a list of Internet Protocol version 4 (IPv4) Dynamic Host Configuration Protocol (DHCP) scopes.
-1. Review the help for the command.
-1. Display a list of the available IPv4 DHCP scopes on **LON-DC1**.
-1. Display a list of the available IPv4 DHCP scopes on **LON-DC1**. This time, include only the scope ID, subnet mask, and scope name, and display the data in a single column.
+1. Using a keyword such as **DHCP** or **scope**, find a command that can display a list of Internet Protocol version 4 (IPv4) Dynamic Host Configuration Protocol (DHCP) scopes.<details><summary>Click to see the answer</summary><Strong> help \*scope\*  </Strong></details>
+1. Review the help for the command.<details><summary>Click to see the answer</summary><Strong> Help Get-DHCPServerv4Scope -ShowWindow  </Strong></details>
+1. Display a list of the available IPv4 DHCP scopes on **LON-DC1**.<details><summary>Click to see the answer</summary><Strong> Get-DHCPServerv4Scope -ComputerName LON-DC1 </Strong></details>
+1. Display a list of the available IPv4 DHCP scopes on **LON-DC1**. This time, include only the scope ID, subnet mask, and scope name, and display the data in a single column.<details><summary>Click to see the answer</summary><Strong> Get-DHCPServerv4Scope -ComputerName LON-DC1 | Select-Object -Property ScopeId,SubnetMask,Name | Format-List </Strong></details>
 
 ### Task 4: Display a sorted list of enabled Windows Firewall rules
 
-1. Using a keyword such as **rule**, find a command that can display the firewall rules.
-1. Display a list of the firewall rules.
-1. Review the help for the command that displays the firewall rules.
-1. Display a list of the firewall rules that are enabled.
-1. Display the same data in a table, making sure no information is truncated.
-1. Display a list of the enabled firewall rules. Display only the rules’ display names, the profiles they belong to, their directions, and whether they allow or deny access.
-1. Sort the list in alphabetical order first by profile and then by display name, with the results displaying in a separate table for each profile.
+1. Using a keyword such as **rule**, find a command that can display the firewall rules.<details><summary>Click to see the answer</summary><Strong>   help \*rule\*  </Strong></details>
+1. Display a list of the firewall rules.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule  </Strong></details>
+1. Review the help for the command that displays the firewall rules.<details><summary>Click to see the answer</summary><Strong>   Help Get-NetFirewallRule -ShowWindow </Strong></details>
+1. Display a list of the firewall rules that are enabled.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule -Enabled True </Strong></details>
+1. Display the same data in a table, making sure no information is truncated.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule -Enabled True | Format-Table -wrap </Strong></details>
+1. Sort the list in alphabetical order first by profile and then by display name, with the results displaying in a separate table for each profile.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule -Enabled True | Select-Object -Property DisplayName,Profile,Direction,Action | Sort-Object -Property Profile, DisplayName | ft -GroupBy Profile </Strong></details>
 
 ### Task 5: Display a sorted list of network neighbors
 
