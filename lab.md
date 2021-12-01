@@ -80,7 +80,7 @@ The main tasks for this exercise are:
 
 1. Using a keyword such as **rule**, find a command that can display the firewall rules.<details><summary>Click to see the answer</summary><Strong>   help \*rule\*  </Strong></details>
 1. Display a list of the firewall rules.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule  </Strong></details>
-1. Review the help for the command that displays the firewall rules.<details><summary>Click to see the answer</summary><Strong>   Help Get-NetFirewallRule -ShowWindow </Strong></details>
+1. Review the help for the command that displays the firewall rules.<details><summary>Click to see the answer</summary><Strong>   Get-Help Get-NetFirewallRule -ShowWindow </Strong></details>
 1. Display a list of the firewall rules that are enabled.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule -Enabled True </Strong></details>
 1. Display the same data in a table, making sure no information is truncated.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule -Enabled True | Format-Table -wrap </Strong></details>
 1. Sort the list in alphabetical order first by profile and then by display name, with the results displaying in a separate table for each profile.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule -Enabled True | Select-Object -Property DisplayName,Profile,Direction,Action | Sort-Object -Property Profile, DisplayName | ft -GroupBy Profile </Strong></details>
