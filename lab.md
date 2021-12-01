@@ -71,14 +71,14 @@ The main tasks for this exercise are:
 
 ### Task 3: Display a list of available scopes from the DHCP server
 
-1. Using a keyword such as **DHCP** or **scope**, find a command that can display a list of Internet Protocol version 4 (IPv4) Dynamic Host Configuration Protocol (DHCP) scopes.<details><summary>Click to see the answer</summary><Strong> help \*scope\*  </Strong></details>
+1. Using a keyword such as **DHCP** or **scope**, find a command that can display a list of Internet Protocol version 4 (IPv4) Dynamic Host Configuration Protocol (DHCP) scopes.<details><summary>Click to see the answer</summary><Strong> Get-Command \*scope\*  </Strong></details>
 1. Review the help for the command.<details><summary>Click to see the answer</summary><Strong> Help Get-DHCPServerv4Scope -ShowWindow  </Strong></details>
 1. Display a list of the available IPv4 DHCP scopes on **LON-DC1**.<details><summary>Click to see the answer</summary><Strong> Get-DHCPServerv4Scope -ComputerName LON-DC1 </Strong></details>
 1. Display a list of the available IPv4 DHCP scopes on **LON-DC1**. This time, include only the scope ID, subnet mask, and scope name, and display the data in a single column.<details><summary>Click to see the answer</summary><Strong> Get-DHCPServerv4Scope -ComputerName LON-DC1 | Select-Object -Property ScopeId,SubnetMask,Name | Format-List </Strong></details>
 
 ### Task 4: Display a sorted list of enabled Windows Firewall rules
 
-1. Using a keyword such as **rule**, find a command that can display the firewall rules.<details><summary>Click to see the answer</summary><Strong>   help \*rule\*  </Strong></details>
+1. Using a keyword such as **rule**, find a command that can display the firewall rules.<details><summary>Click to see the answer</summary><Strong>   Get-Command \*rule\*  </Strong></details>
 1. Display a list of the firewall rules.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule  </Strong></details>
 1. Review the help for the command that displays the firewall rules.<details><summary>Click to see the answer</summary><Strong>   Get-Help Get-NetFirewallRule -ShowWindow </Strong></details>
 1. Display a list of the firewall rules that are enabled.<details><summary>Click to see the answer</summary><Strong>   Get-NetFirewallRule -Enabled True </Strong></details>
@@ -87,18 +87,18 @@ The main tasks for this exercise are:
 
 ### Task 5: Display a sorted list of network neighbors
 
-1. Using a keyword such as **neighbor**, find a command that can display the network neighbors.
-1. Review the help for the command.
-1. Display a list of the network neighbors.
-1. Display a list of the network neighbors that's sorted by state.
-1. Display a list of the network neighbors that's grouped by state, displaying only the IP address in as compact a format as possible and letting Windows PowerShell decide how to optimize the layout.
+1. Using a keyword such as **neighbor**, find a command that can display the network neighbors.<details><summary>Click to see the answer</summary><Strong>   Get-Command \*neighbor\*   </Strong></details>
+1. Review the help for the command.<details><summary>Click to see the answer</summary><Strong>   Get-Help Get-NetNeighbor -ShowWindow </Strong></details>
+1. Display a list of the network neighbors.<details><summary>Click to see the answer</summary><Strong>   Get-NetNeighbor </Strong></details>
+1. Display a list of the network neighbors that's sorted by state.<details><summary>Click to see the answer</summary><Strong>   Get-NetNeighbor | Sort-Object -Property State </Strong></details>
+1. Display a list of the network neighbors that's grouped by state, displaying only the IP address in as compact a format as possible and letting Windows PowerShell decide how to optimize the layout.<details><summary>Click to see the answer</summary><Strong>   Get-NetNeighbor | Sort-Object -Property State | Select-Object -Property IPAddress,State | Format-Wide -GroupBy State -AutoSize </Strong></details>
 
 ### Task 6: Display information from the DNS name resolution cache
 
-1. Test your network connection to both **LON-DC1** and **LON-CL1** so that you know the Domain Name System (DNS) client cache is populated with data.
-1. Using a keyword such as **cache**, find a command that can display items from the DNS client cache.
-1. Display the DNS client cache.
-1. Display the DNS client cache. Sort the list by record name, and display only the record name, record type, and Time to Live. Use only one column to display all the data.
+1. Test your network connection to both **LON-DC1** and **LON-CL1** so that you know the Domain Name System (DNS) client cache is populated with data.<details><summary>Click to see the answer</summary><Strong>   Test-NetConnection LON-DC1 </Strong></details>
+1. Using a keyword such as **cache**, find a command that can display items from the DNS client cache.<details><summary>Click to see the answer</summary><Strong>    Get-Command \*cache\*  </Strong></details>
+1. Display the DNS client cache.<details><summary>Click to see the answer</summary><Strong>    Get-DnsClientCache  </Strong></details>
+1. Display the DNS client cache. Sort the list by record name, and display only the record name, record type, and Time to Live. Use only one column to display all the data.<details><summary>Click to see the answer</summary><Strong>   Get-DnsClientCache | Select Name,Type,TimeToLive | Sort Name | Format-List </Strong></details>
 
 ### Exercise 1 results
 
@@ -121,16 +121,16 @@ The main tasks for this exercise are:
 ### Task 1: Display a list of all the users in the Users container of Active Directory
 
 1. On **LON-CL1**, open **Windows PowerShell** as an administrator.
-1. Using a keyword such as **user,** find a command that can list Active Directory users.
-1. Review the help for the command and identify any mandatory parameters.
-1. Display a list of all the users in Active Directory in a format that lets you easily compare properties.
-1. Display the same list of all the users in the same format. This time, however, display only those users in the **Users** container of Active Directory. Use a search base of **"cn=Users,dc=adatum,dc=com"** for this task.
+1. Using a keyword such as **user,** find a command that can list Active Directory users.<details><summary>Click to see the answer</summary><Strong> Get-Command \*user\* </Strong></details>
+1. Review the help for the command and identify any mandatory parameters.<details><summary>Click to see the answer</summary><Strong> Get-Help Get-ADUser -ShowWindow </Strong></details>
+1. Display a list of all the users in Active Directory in a format that lets you easily compare properties.<details><summary>Click to see the answer</summary><Strong> Get-ADUser -Filter * | Format-Table </Strong></details>
+1. Display the same list of all the users in the same format. This time, however, display only those users in the **Users** container of Active Directory. Use a search base of **"cn=Users,dc=adatum,dc=com"** for this task.<details><summary>Click to see the answer</summary><Strong> Get-ADUser -Filter * -SearchBase "cn=Users,dc=Adatum,dc=com" | Format-Table </Strong></details>
 
 ### Task 2: Create a report of the Security event log entries that have the event ID 4624
 
-1. Display only the total number of **Security** event log entries that have the event ID **4624**.
-1. Display the full list of the **Security** event log entries that have the event ID **4624**, and display only the time written, event ID, and message.
-1. Display only the 10 oldest entries in a format that lets you review the message details.
+1. Display only the total number of **Security** event log entries that have the event ID **4624**.<details><summary>Click to see the answer</summary><Strong> Get-EventLog -LogName Security | Where-Object {$_.EventID -eq 4624} | Measure-Object | Foramt-Wide </Strong></details>
+3. Display the full list of the **Security** event log entries that have the event ID **4624**, and display only the time written, event ID, and message.<details><summary>Click to see the answer</summary><Strong> Get-EventLog -LogName Security | Where-Object {$_.EventID -eq 4624} | Select-Object TimeWritten,EventID,Message </Strong></details>
+6. Display only the 10 oldest entries in a format that lets you review the message details.<details><summary>Click to see the answer</summary><Strong> Get-EventLog -LogName Security | Where-Object {$_.EventID -eq 4624} | Select-Object TimeWritten,EventID,Message -Last 10 | Format-List </Strong></details>
 
 ### Task 3: Display a list of the encryption certificates installed on the computer
 
