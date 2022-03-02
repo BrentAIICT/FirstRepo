@@ -1,0 +1,2 @@
+﻿(Get-EventLog -LogName Security -InstanceId 4768 | where ReplacementStrings -contains 'abbi@adatum.com') | foreach {$_.ReplacementStrings[0,6]}
+(Get-EventLog -LogName Security -InstanceId 4769 | where ReplacementStrings -contains 'abbi@adatum.com') | foreach {$_.ReplacementStrings[0,6]}
