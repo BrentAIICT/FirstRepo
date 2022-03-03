@@ -45,7 +45,7 @@ function HTMLFragment {
                                 @{n='OperatingSystem';e={$_.Caption}},
                                 OSArchitecture,
                                 InstallDate |
-        ConvertTo-Html -PreContent "<hr><h2>$($OSInfo.CSName)</h2>" -PostContent '<h3>Physical Networ Adapters</h3>' -As List |
+        ConvertTo-Html -PreContent "<h2>$($OSInfo.CSName)</h2>"  -As List |
         Out-String
     $HTML -replace '<tr><td>(.+:)</td><td>','<tr><th>$1</th><td>'    
     $PhysNics = Get-CimInstance -CimSession $CimSes -ClassName Win32_NetworkAdapter | 
@@ -60,21 +60,21 @@ function HTMLFragment {
                         @{n='SubnetMask';e={$_.IPSubnet | Where-Object {$_ -match $IPRegex}}},
                         @{n='DefaultGateway';e={$_.DefaultIPGateway | Where-Object {$_ -match $IPRegex}}},
                         @{n='DNSServerAddress';e={$_.DNSServerSearchOrder | Where-Object {$_ -match $IPRegex}}} | 
-              ConvertTo-Html -Fragment -PostContent '<br>'
+              ConvertTo-Html -Fragment -PreContent '<h3>Physical Networ Adapters</h3>' 
     } 
     $PhysMemDimms = Get-CimInstance -CimSession $CimSes -ClassName Win32_PhysicalMemory
     $PhysMemDimms | 
         Select-Object -Property Name,Manufacturer,BankLabel,DeviceLocator,Capacity,PartNumber |
-        ConvertTo-Html -Fragment -PreContent '<h3>Memory DIMMs</h3>'  -PostContent '<br>'
+        ConvertTo-Html -Fragment -PreContent '<h3>Memory DIMMs</h3>'  
 
     $PhysDisks = Get-PhysicalDisk -CimSession $CimSes 
     $PhysDisks | 
         Select-Object -Property  Model,SerialNumber,Size,FirmwareVersion,MediaType |
-        ConvertTo-Html -Fragment -PreContent '<h3>DiskDrives</h3>' -PostContent '<br>'
+        ConvertTo-Html -Fragment -PreContent '<h3>DiskDrives</h3>' 
  
   }
 }
 $BorderCSS = 'border:solid 2pt black;border-collapse:collapse;background-color:white;'
-$CSS = "<style> hr {border:3px solid black;} body{background-color:lightgray;} table{$BorderCSS} tr,td,th{$BorderCSS} tr,td{padding:3pt} th{background-color:lightblue} </style>"
+$CSS = "<style> h2 {width:100%;text-align:center;background-color:black;color:lightblue;} body{background-color:#f2f2f2;} table{$BorderCSS} tr,td,th{$BorderCSS;padding:3pt;} th{background-color:lightblue} </style>"
 $Frag = HTMLFragment
 ConvertTo-Html -Head $CSS -Body $Frag | Out-file e:\report.html
