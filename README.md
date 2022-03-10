@@ -1,5 +1,5 @@
 # FirstRepo
-
+```PowerShell
 function Install-PreviousAZModule {
   [cmdletBinding()]
   Param(
@@ -12,3 +12,4 @@ function Install-PreviousAZModule {
     Install-Module -Name $Module.Name -RequiredVersion $Version -Force
   }
 }
+```
