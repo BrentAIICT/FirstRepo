@@ -1,1 +1,1 @@
-Get-Service
+Get-Service -name a*
