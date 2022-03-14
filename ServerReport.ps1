@@ -1,4 +1,4 @@
-<#
+<# 
 .SYNOPSIS
   This command produces a report on all computers in the domain
 .DESCRIPTION
